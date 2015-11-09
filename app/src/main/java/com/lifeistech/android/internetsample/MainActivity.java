@@ -2,9 +2,11 @@ package com.lifeistech.android.internetsample;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
@@ -12,6 +14,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -26,6 +29,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import retrofit.RestAdapter;
+import retrofit.RetrofitError;
 import retrofit.http.GET;
 import retrofit.http.Query;
 
@@ -33,13 +37,25 @@ public class MainActivity extends AppCompatActivity {
     // 天気予報API
     private String REQUEST_URL = "http://weather.livedoor.com/forecast/webservice/json/v1?city=130010";
 
-    private TextView textView;
+    private android.os.Handler mHandler = new Handler();
+    private TextView mTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = (TextView) findViewById(R.id.textView);
+        mTextView = (TextView) findViewById(R.id.textView);
+        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("request", "start");
+//                accessOnHttpClient();
+//                accessOnVolley();
+//                accessOnOkHttp();
+                accessOnRetrofit();
+                Log.d("request", "end");
+            }
+        });
     }
 
     private void accessOnHttpClient() {
@@ -73,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(s)) return;
                 Log.d("result", s);
                 // 通信結果を表示
-                textView.setText(s);
+                mTextView.setText(s);
             }
         }.execute();
     }
@@ -84,7 +100,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 Log.d("result", response.toString());
-                textView.setText(response.toString());
+                Weather weather = new Gson().fromJson(response.toString(), Weather.class);
+                mTextView.setText(weather.title);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -111,13 +128,17 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(Request request, IOException e) {
 
             }
-
             // 通信が成功した時
             @Override
-            public void onResponse(com.squareup.okhttp.Response response) throws IOException {
+            public void onResponse(final com.squareup.okhttp.Response response) throws IOException {
                 // 通信結果をログに出力する
-                Log.d("result", response.toString());
-                textView.setText(response.toString());
+                Log.d("result", response.body().toString());
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        mTextView.setText(response.body().toString());
+                    }
+                });
             }
         });
     }
@@ -125,25 +146,26 @@ public class MainActivity extends AppCompatActivity {
     private void accessOnRetrofit() {
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setEndpoint("http://weather.livedoor.com")
+                .setLogLevel(RestAdapter.LogLevel.FULL)
                 .build();
         WeatherService service = restAdapter.create(WeatherService.class);
-        service.getWeather(130010, new Callback() {
+        service.getWeather(130010, new retrofit.Callback<Weather>() {
             @Override
-            public void onFailure(Request request, IOException e) {
-                e.printStackTrace();
+            public void success(Weather weather, retrofit.client.Response response) {
+                Log.d("result", weather.title);
+                mTextView.setText(weather.title);
             }
 
             @Override
-            public void onResponse(com.squareup.okhttp.Response response) throws IOException {
-                Log.d("result", response.toString());
-                textView.setText(response.toString());
+            public void failure(RetrofitError error) {
+                error.printStackTrace();
             }
         });
     }
 
     private interface WeatherService {
         @GET("/forecast/webservice/json/v1")
-        public void getWeather(@Query("city") int city, Callback callback);
+        void getWeather(@Query("city") int city, retrofit.Callback<Weather> callback);
     }
 
 }

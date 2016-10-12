@@ -1,5 +1,6 @@
 package com.lifeistech.android.internetsample;
 
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -145,28 +146,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void accessOnRetrofit() {
-        RestAdapter restAdapter = new RestAdapter.Builder()
-                .setEndpoint("http://weather.livedoor.com")
-                .setLogLevel(RestAdapter.LogLevel.FULL)
-                .build();
-        WeatherService service = restAdapter.create(WeatherService.class);
-        service.getWeather(130010, new retrofit.Callback<Weather>() {
-            @Override
-            public void success(Weather weather, retrofit.client.Response response) {
-                Log.d("result", weather.title);
-                mTextView.setText(weather.title);
-            }
 
-            @Override
-            public void failure(RetrofitError error) {
-                error.printStackTrace();
-            }
-        });
-    }
 
-    private interface WeatherService {
-        @GET("/forecast/webservice/json/v1")
-        void getWeather(@Query("city") int city, retrofit.Callback<Weather> callback);
     }
 
 }

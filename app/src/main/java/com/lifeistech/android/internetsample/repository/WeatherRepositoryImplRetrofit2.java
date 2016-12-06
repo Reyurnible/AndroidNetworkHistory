@@ -10,6 +10,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -26,13 +27,14 @@ public class WeatherRepositoryImplRetrofit2 implements WeatherRepository {
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(new Uri.Builder().scheme(SCHEME).authority(AUTHORITY).build().toString())
                 .client(new OkHttpClient())
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
         service = retrofit.create(WeatherService.class);
     }
 
     @Override
     public void getWeather(final RequestCallback callback) {
-        service.getWeather(130010, new Callback<Weather>() {
+        service.getWeather(130010).enqueue(new Callback<Weather>() {
             @Override
             public void onResponse(Call<Weather> call, Response<Weather> response) {
                 Log.d(TAG, "result: " + response.body().toString());
@@ -48,7 +50,7 @@ public class WeatherRepositoryImplRetrofit2 implements WeatherRepository {
 
     private interface WeatherService {
         @GET(PATH)
-        void getWeather(@Query("city") int city, Callback<Weather> callback);
+        Call<Weather> getWeather(@Query("city") int city);
     }
 
 }

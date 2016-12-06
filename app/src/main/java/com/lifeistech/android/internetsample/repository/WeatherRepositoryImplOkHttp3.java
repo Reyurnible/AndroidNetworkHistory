@@ -38,8 +38,9 @@ public class WeatherRepositoryImplOkHttp3 implements WeatherRepository {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 // 通信結果をログに出力する
-                Log.d(TAG, "result: " + response.body().toString());
-                final Weather weather = new Gson().fromJson(response.body().toString(), Weather.class);
+                final String responseBody = response.body().string();
+                Log.d(TAG, "result: " + responseBody);
+                final Weather weather = new Gson().fromJson(responseBody, Weather.class);
                 handler.post(new Runnable() {
                     @Override
                     public void run() {

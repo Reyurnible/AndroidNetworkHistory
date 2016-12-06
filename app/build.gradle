@@ -22,6 +22,11 @@ android {
     useLibrary 'org.apache.http.legacy'
 }
 
+// OkHtto
+def okhttpVersion = '3.5.0'
+// Retrofit
+def retrofitVersion = '2.1.0'
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
@@ -29,9 +34,15 @@ dependencies {
 
     // Volley
     compile 'com.mcxiaoke.volley:library:1.0.19'
-    // Retrofit
-    compile 'com.squareup.retrofit:retrofit:1.9.0' // gson in retrofit
-    // OkHttp
+    // Retrofit1
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    // Retrofit2
+    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    // OkHttp2
     compile 'com.squareup.okhttp:okhttp:2.0.0'
-    compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
+    // OkHttp3
+    compile "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    // Ion
+    compile 'com.koushikdutta.ion:ion:2.+'
 }

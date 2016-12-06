@@ -38,6 +38,12 @@ public class RepositoryProvider {
                 return new WeatherRepositoryImplVolley(context);
             }
         },
+        Ion {
+            @Override
+            public WeatherRepository createClient(Context context) {
+                return new WeatherRepositoryImplIon(context);
+            }
+        },
         OkHttp2 {
             @Override
             public WeatherRepository createClient(Context context) {

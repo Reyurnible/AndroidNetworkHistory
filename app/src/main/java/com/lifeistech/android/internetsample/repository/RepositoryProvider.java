@@ -44,6 +44,12 @@ public class RepositoryProvider {
                 return new WeatherRepositoryImplOkHttp2();
             }
         },
+        OkHttp3 {
+            @Override
+            public WeatherRepository createClient(Context context) {
+                return new WeatherRepositoryImplOkHttp3();
+            }
+        },
         Retrofit1 {
             @Override
             public WeatherRepository createClient(Context context) {

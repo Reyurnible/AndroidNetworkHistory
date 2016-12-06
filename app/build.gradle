@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         applicationId "com.lifeistech.android.internetsample"
@@ -28,7 +28,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.0'
 
     // Volley
-    compile 'com.mcxiaoke.volley:library:1.0.+'
+    compile 'com.mcxiaoke.volley:library:1.0.19'
     // Retrofit
     compile 'com.squareup.retrofit:retrofit:1.9.0' // gson in retrofit
     // OkHttp

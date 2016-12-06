@@ -13,15 +13,15 @@ import android.widget.TextView;
 import com.lifeistech.android.internetsample.entities.Weather;
 import com.lifeistech.android.internetsample.repository.WeatherRepository;
 import com.lifeistech.android.internetsample.repository.WeatherRepositoryImplHttpClient;
-import com.lifeistech.android.internetsample.repository.WeatherRepositoryImplOkHttp;
-import com.lifeistech.android.internetsample.repository.WeatherRepositoryImplRetrofit;
+import com.lifeistech.android.internetsample.repository.WeatherRepositoryImplOkHttp2;
+import com.lifeistech.android.internetsample.repository.WeatherRepositoryImplRetrofit1;
 import com.lifeistech.android.internetsample.repository.WeatherRepositoryImplVolley;
 
 public class MainActivity extends AppCompatActivity implements WeatherRepository.RequestCallback {
     private static final String CLIENT_HTTPCLIENT = "HttpClient";
     private static final String CLIENT_VOLLEY = "Volley";
-    private static final String CLIENT_OKHTTP = "OkHttp";
-    private static final String CLIENT_RETROFIT = "Retrofit";
+    private static final String CLIENT_OKHTTP = "OkHttp2";
+    private static final String CLIENT_RETROFIT = "Retrofit1";
 
     private TextView textView;
     private Spinner spinner;
@@ -91,9 +91,9 @@ public class MainActivity extends AppCompatActivity implements WeatherRepository
         } else if (CLIENT_VOLLEY.equals(client)) {
             return new WeatherRepositoryImplVolley(this);
         } else if (CLIENT_OKHTTP.equals(client)) {
-            return new WeatherRepositoryImplOkHttp();
+            return new WeatherRepositoryImplOkHttp2();
         } else if (CLIENT_RETROFIT.equals(client)) {
-            return new WeatherRepositoryImplRetrofit();
+            return new WeatherRepositoryImplRetrofit1();
         }
         return null;
     }

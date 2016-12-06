@@ -13,12 +13,12 @@ import retrofit.http.Query;
 /**
  * Retrofitでの実装
  */
-public class WeatherRepositoryImplRetrofit implements WeatherRepository {
-    public static final String TAG = WeatherRepositoryImplRetrofit.class.getSimpleName();
+public class WeatherRepositoryImplRetrofit1 implements WeatherRepository {
+    public static final String TAG = WeatherRepositoryImplRetrofit1.class.getSimpleName();
 
     private final WeatherService service;
 
-    public WeatherRepositoryImplRetrofit() {
+    public WeatherRepositoryImplRetrofit1() {
         final RestAdapter restAdapter = new RestAdapter.Builder()
                 .setEndpoint(new Uri.Builder().scheme(SCHEME).authority(AUTHORITY).build().toString())
                 .setLogLevel(RestAdapter.LogLevel.FULL)

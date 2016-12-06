@@ -14,8 +14,8 @@ import java.io.IOException;
 /**
  * OkHttpでの実装
  */
-public class WeatherRepositoryImplOkHttp implements WeatherRepository {
-    public static final String TAG = WeatherRepositoryImplOkHttp.class.getSimpleName();
+public class WeatherRepositoryImplOkHttp2 implements WeatherRepository {
+    public static final String TAG = WeatherRepositoryImplOkHttp2.class.getSimpleName();
 
     private android.os.Handler handler = new Handler();
 

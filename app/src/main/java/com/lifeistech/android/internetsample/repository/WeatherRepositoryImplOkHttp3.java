@@ -15,7 +15,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * OkHttpでの実装
+ * OkHttp3での実装
+ * https://github.com/square/okhttp
  */
 public class WeatherRepositoryImplOkHttp3 implements WeatherRepository {
     public static final String TAG = WeatherRepositoryImplOkHttp3.class.getSimpleName();

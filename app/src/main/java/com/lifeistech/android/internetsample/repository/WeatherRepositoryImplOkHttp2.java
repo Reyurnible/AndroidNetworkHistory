@@ -12,7 +12,8 @@ import com.squareup.okhttp.Request;
 import java.io.IOException;
 
 /**
- * OkHttpでの実装
+ * OkHttp2での実装
+ * https://github.com/square/okhttp/tree/okhttp_27
  */
 public class WeatherRepositoryImplOkHttp2 implements WeatherRepository {
     public static final String TAG = WeatherRepositoryImplOkHttp2.class.getSimpleName();

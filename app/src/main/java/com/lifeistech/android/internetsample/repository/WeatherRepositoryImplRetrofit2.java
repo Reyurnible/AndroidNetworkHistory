@@ -14,7 +14,8 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 /**
- * Retrofitでの実装
+ * Retrofit2での実装
+ * https://github.com/square/retrofit
  */
 public class WeatherRepositoryImplRetrofit2 implements WeatherRepository {
     public static final String TAG = WeatherRepositoryImplRetrofit2.class.getSimpleName();

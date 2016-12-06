@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 /**
  * Volleyでの実装
+ * https://github.com/mcxiaoke/android-volley
  */
 public class WeatherRepositoryImplVolley implements WeatherRepository {
     public static final String TAG = WeatherRepositoryImplVolley.class.getSimpleName();

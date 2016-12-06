@@ -1,7 +1,6 @@
 package com.lifeistech.android.internetsample;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -11,23 +10,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.lifeistech.android.internetsample.entities.Weather;
+import com.lifeistech.android.internetsample.repository.RepositoryProvider;
 import com.lifeistech.android.internetsample.repository.WeatherRepository;
-import com.lifeistech.android.internetsample.repository.WeatherRepositoryImplHttpClient;
-import com.lifeistech.android.internetsample.repository.WeatherRepositoryImplOkHttp2;
-import com.lifeistech.android.internetsample.repository.WeatherRepositoryImplRetrofit1;
-import com.lifeistech.android.internetsample.repository.WeatherRepositoryImplRetrofit2;
-import com.lifeistech.android.internetsample.repository.WeatherRepositoryImplVolley;
 
 public class MainActivity extends AppCompatActivity implements WeatherRepository.RequestCallback {
-    private static final String CLIENT_HTTPCLIENT = "HttpClient";
-    private static final String CLIENT_VOLLEY = "Volley";
-    private static final String CLIENT_OKHTTP2 = "OkHttp2";
-    private static final String CLIENT_RETROFIT1 = "Retrofit1";
-    private static final String CLIENT_RETROFIT2 = "Retrofit1";
 
     private TextView textView;
     private Spinner spinner;
     private Button button;
+    // リクエスト開始時間
     private long startTimeMills;
 
     @Override
@@ -39,24 +30,16 @@ public class MainActivity extends AppCompatActivity implements WeatherRepository
         spinner = (Spinner) findViewById(R.id.spinner);
         button = (Button) findViewById(R.id.button);
 
-        final ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(
-                        this,
-                        android.R.layout.simple_spinner_item,
-                        new String[]{
-                                CLIENT_HTTPCLIENT,
-                                CLIENT_VOLLEY,
-                                CLIENT_OKHTTP2,
-                                CLIENT_RETROFIT1,
-                                CLIENT_RETROFIT2
-                        });
+        final ArrayAdapter<RepositoryProvider.Client> adapter =
+                new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, RepositoryProvider.Client.values());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final WeatherRepository repository = provideRepository();
+                final RepositoryProvider.Client client = (RepositoryProvider.Client) spinner.getSelectedItem();
+                final WeatherRepository repository = RepositoryProvider.provideWeatherRepository(client);
                 assert repository != null;
                 startTimeMills = System.currentTimeMillis();
                 Log.d("request", "start: (" + startTimeMills + ")");
@@ -84,23 +67,6 @@ public class MainActivity extends AppCompatActivity implements WeatherRepository
         message += throwable.getMessage();
         textView.setText(message);
         button.setEnabled(true);
-    }
-
-    @Nullable
-    private WeatherRepository provideRepository() {
-        final String client = (String) spinner.getSelectedItem();
-        if (CLIENT_HTTPCLIENT.equals(client)) {
-            return new WeatherRepositoryImplHttpClient();
-        } else if (CLIENT_VOLLEY.equals(client)) {
-            return new WeatherRepositoryImplVolley(this);
-        } else if (CLIENT_OKHTTP2.equals(client)) {
-            return new WeatherRepositoryImplOkHttp2();
-        } else if (CLIENT_RETROFIT1.equals(client)) {
-            return new WeatherRepositoryImplRetrofit1();
-        } else if (CLIENT_RETROFIT2.equals(client)) {
-            return new WeatherRepositoryImplRetrofit2();
-        }
-        return null;
     }
 
 }

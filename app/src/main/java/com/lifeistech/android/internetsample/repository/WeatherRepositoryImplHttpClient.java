@@ -1,5 +1,6 @@
 package com.lifeistech.android.internetsample.repository;
 
+import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
 import android.text.TextUtils;
 import android.util.Log;
@@ -23,7 +24,7 @@ public class WeatherRepositoryImplHttpClient implements WeatherRepository {
 
     @Override
     public void getWeather(final RequestCallback callback) {
-        new AsyncTask<String, String, String>() {
+        new AsyncTask<Void, Void, String>() {
             // 処理の前に呼ばれるメソッド
             @Override
             protected void onPreExecute() {
@@ -32,7 +33,7 @@ public class WeatherRepositoryImplHttpClient implements WeatherRepository {
 
             // 処理を行うメソッド
             @Override
-            protected String doInBackground(String... params) {
+            protected String doInBackground(Void... params) {
                 final HttpClient httpClient = new DefaultHttpClient();
                 final HttpGet httpGet = new HttpGet(uri.toString());
                 final HttpResponse httpResponse;
@@ -59,6 +60,5 @@ public class WeatherRepositoryImplHttpClient implements WeatherRepository {
                 }
             }
         }.execute();
-
     }
 }

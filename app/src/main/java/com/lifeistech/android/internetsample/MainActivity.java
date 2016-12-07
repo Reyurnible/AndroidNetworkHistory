@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements WeatherRepository
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                textView.setText("Requesting...");
                 final RepositoryProvider.Client client = (RepositoryProvider.Client) spinner.getSelectedItem();
                 final WeatherRepository repository = RepositoryProvider.provideWeatherRepository(client);
                 assert repository != null;

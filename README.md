@@ -8,8 +8,10 @@ This repository is collect old android network libraries.
 
 - HttpClient
 - Volley
+- Ion
 - OkHttp
-- Retrofit
+- Retrofit1
+- Retrofit2
 
 ## Source
 

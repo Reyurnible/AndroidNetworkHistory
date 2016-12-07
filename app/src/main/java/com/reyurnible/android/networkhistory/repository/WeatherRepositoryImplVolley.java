@@ -20,15 +20,14 @@ import org.json.JSONObject;
 public class WeatherRepositoryImplVolley implements WeatherRepository {
     public static final String TAG = WeatherRepositoryImplVolley.class.getSimpleName();
 
-    private Context context;
+    RequestQueue queue;
 
     public WeatherRepositoryImplVolley(Context context) {
-        this.context = context;
+        queue = Volley.newRequestQueue(context);
     }
 
     @Override
     public void getWeather(final RequestCallback callback) {
-        final RequestQueue queue = Volley.newRequestQueue(context);
         final JsonObjectRequest request =
                 new JsonObjectRequest(uri.toString(), null, new Response.Listener<JSONObject>() {
                     @Override

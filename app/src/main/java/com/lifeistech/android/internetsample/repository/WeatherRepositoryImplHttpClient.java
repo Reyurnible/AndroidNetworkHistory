@@ -1,8 +1,6 @@
 package com.lifeistech.android.internetsample.repository;
 
-import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -24,7 +22,7 @@ public class WeatherRepositoryImplHttpClient implements WeatherRepository {
 
     @Override
     public void getWeather(final RequestCallback callback) {
-        new AsyncTask<Void, Void, String>() {
+        new AsyncTask<Void, Void, Weather>() {
             // 処理の前に呼ばれるメソッド
             @Override
             protected void onPreExecute() {
@@ -33,13 +31,14 @@ public class WeatherRepositoryImplHttpClient implements WeatherRepository {
 
             // 処理を行うメソッド
             @Override
-            protected String doInBackground(Void... params) {
+            protected Weather doInBackground(Void... params) {
                 final HttpClient httpClient = new DefaultHttpClient();
                 final HttpGet httpGet = new HttpGet(uri.toString());
                 final HttpResponse httpResponse;
                 try {
                     httpResponse = httpClient.execute(httpGet);
-                    return EntityUtils.toString(httpResponse.getEntity(), "UTF-8");
+                    final String response = EntityUtils.toString(httpResponse.getEntity(), "UTF-8");
+                    return new Gson().fromJson(response, Weather.class);
                 } catch (IOException e) {
                     return null;
                 }
@@ -47,16 +46,15 @@ public class WeatherRepositoryImplHttpClient implements WeatherRepository {
 
             // 処理がすべて終わったら呼ばれるメソッド
             @Override
-            protected void onPostExecute(String response) {
+            protected void onPostExecute(Weather response) {
                 super.onPostExecute(response);
                 // 通信失敗として処理
-                if (TextUtils.isEmpty(response)) {
-                    callback.error(new IOException("OkHttp Request error"));
+                if (response == null) {
+                    callback.error(new IOException("HttpClient request error"));
                 } else {
-                    Log.d(TAG, "result: " + response);
+                    Log.d(TAG, "result: " + response.toString());
                     // 通信結果を表示
-                    final Weather weather = new Gson().fromJson(response, Weather.class);
-                    callback.success(weather);
+                    callback.success(response);
                 }
             }
         }.execute();

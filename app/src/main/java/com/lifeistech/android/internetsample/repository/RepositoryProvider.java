@@ -32,6 +32,12 @@ public class RepositoryProvider {
                 return new WeatherRepositoryImplHttpClient();
             }
         },
+        HttpUrlConnection {
+            @Override
+            public WeatherRepository createClient(Context context) {
+                return new WeatherRepositoryImplHttpURLConnection();
+            }
+        },
         Volley {
             @Override
             public WeatherRepository createClient(Context context) {

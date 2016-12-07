@@ -1,4 +1,4 @@
-package com.lifeistech.android.internetsample;
+package com.reyurnible.android.networkhistory;
 
 import org.junit.Test;
 

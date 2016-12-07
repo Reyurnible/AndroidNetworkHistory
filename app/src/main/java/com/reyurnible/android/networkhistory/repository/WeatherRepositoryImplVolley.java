@@ -1,4 +1,4 @@
-package com.lifeistech.android.internetsample.repository;
+package com.reyurnible.android.networkhistory.repository;
 
 import android.content.Context;
 import android.util.Log;
@@ -9,7 +9,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
-import com.lifeistech.android.internetsample.entities.Weather;
+import com.reyurnible.android.networkhistory.entities.Weather;
 
 import org.json.JSONObject;
 

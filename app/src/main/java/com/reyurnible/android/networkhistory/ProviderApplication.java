@@ -1,8 +1,8 @@
-package com.lifeistech.android.internetsample;
+package com.reyurnible.android.networkhistory;
 
 import android.app.Application;
 
-import com.lifeistech.android.internetsample.repository.RepositoryProvider;
+import com.reyurnible.android.networkhistory.repository.RepositoryProvider;
 
 /**
  * Application for Initialize repositories

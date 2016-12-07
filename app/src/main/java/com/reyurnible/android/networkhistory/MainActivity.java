@@ -1,4 +1,4 @@
-package com.lifeistech.android.internetsample;
+package com.reyurnible.android.networkhistory;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,9 +9,9 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.lifeistech.android.internetsample.entities.Weather;
-import com.lifeistech.android.internetsample.repository.RepositoryProvider;
-import com.lifeistech.android.internetsample.repository.WeatherRepository;
+import com.reyurnible.android.networkhistory.entities.Weather;
+import com.reyurnible.android.networkhistory.repository.RepositoryProvider;
+import com.reyurnible.android.networkhistory.repository.WeatherRepository;
 
 public class MainActivity extends AppCompatActivity implements WeatherRepository.RequestCallback {
 

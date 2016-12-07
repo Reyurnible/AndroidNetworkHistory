@@ -1,4 +1,4 @@
-package com.lifeistech.android.internetsample.repository;
+package com.reyurnible.android.networkhistory.repository;
 
 import android.content.Context;
 import android.util.Log;
@@ -6,7 +6,7 @@ import android.util.Log;
 import com.google.gson.reflect.TypeToken;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
-import com.lifeistech.android.internetsample.entities.Weather;
+import com.reyurnible.android.networkhistory.entities.Weather;
 
 /**
  * Ionでの実装

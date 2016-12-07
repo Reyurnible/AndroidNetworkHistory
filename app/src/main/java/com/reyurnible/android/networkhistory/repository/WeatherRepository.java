@@ -1,8 +1,8 @@
-package com.lifeistech.android.internetsample.repository;
+package com.reyurnible.android.networkhistory.repository;
 
 import android.net.Uri;
 
-import com.lifeistech.android.internetsample.entities.Weather;
+import com.reyurnible.android.networkhistory.entities.Weather;
 
 /**
  * 天気予報取得のためのManagerクラス

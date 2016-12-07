@@ -1,4 +1,4 @@
-package com.lifeistech.android.internetsample.repository;
+package com.reyurnible.android.networkhistory.repository;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

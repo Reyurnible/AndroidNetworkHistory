@@ -1,4 +1,4 @@
-package com.lifeistech.android.internetsample.entities;
+package com.reyurnible.android.networkhistory.entities;
 
 public class AreaLocation {
     public String city;

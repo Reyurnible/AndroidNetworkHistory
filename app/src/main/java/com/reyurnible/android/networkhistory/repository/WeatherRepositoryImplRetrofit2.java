@@ -1,9 +1,9 @@
-package com.lifeistech.android.internetsample.repository;
+package com.reyurnible.android.networkhistory.repository;
 
 import android.net.Uri;
 import android.util.Log;
 
-import com.lifeistech.android.internetsample.entities.Weather;
+import com.reyurnible.android.networkhistory.entities.Weather;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;

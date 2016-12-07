@@ -1,4 +1,4 @@
-package com.lifeistech.android.internetsample.entities;
+package com.reyurnible.android.networkhistory.entities;
 
 import java.util.List;
 

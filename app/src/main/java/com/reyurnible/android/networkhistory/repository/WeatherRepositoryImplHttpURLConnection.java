@@ -1,11 +1,11 @@
-package com.lifeistech.android.internetsample.repository;
+package com.reyurnible.android.networkhistory.repository;
 
 import android.os.AsyncTask;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.lifeistech.android.internetsample.entities.Weather;
+import com.reyurnible.android.networkhistory.entities.Weather;
 
 import java.io.BufferedReader;
 import java.io.IOException;

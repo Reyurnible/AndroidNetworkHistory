@@ -6,7 +6,8 @@ This repository is collect old android network libraries.
 
 ### Libraries
 
-- HttpClient
+- DefaultHttpClient
+- HttpUrlConnection
 - Volley
 - Ion
 - OkHttp

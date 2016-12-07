@@ -16,6 +16,7 @@ import java.net.URL;
 
 /**
  * HttpURLConnectionでの実装
+ * https://developer.android.com/reference/java/net/HttpURLConnection.html
  */
 public class WeatherRepositoryImplHttpURLConnection implements WeatherRepository {
     public static final String TAG = WeatherRepositoryImplHttpURLConnection.class.getSimpleName();

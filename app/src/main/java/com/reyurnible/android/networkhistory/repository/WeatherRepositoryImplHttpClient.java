@@ -16,6 +16,7 @@ import java.io.IOException;
 
 /**
  * HttpClientでの実装
+ * https://developer.android.com/reference/org/apache/http/client/HttpClient.html
  */
 public class WeatherRepositoryImplHttpClient implements WeatherRepository {
     public static final String TAG = WeatherRepositoryImplHttpClient.class.getSimpleName();

@@ -13,6 +13,7 @@ This repository is collect old android network libraries.
 - OkHttp
 - Retrofit1
 - Retrofit2
+- Ktor Client
 
 ## Source
 

@@ -1,20 +1,39 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    def versions = [:]
+    versions.kotlin = '1.3.31'
+    versions.volley = '1.0.19'
+    // OkHtto
+    versions.regacyOkhttp = '2.7.0'
+    versions.okhttp = '3.5.0'
+    // Retrofit
+    versions.regacyRetrofit = '1.9.0'
+    versions.retrofit = '2.1.0'
+    // Ktor
+    versions.ktor = '1.2.1'
+    versions.coroutines = '1.2.1'
+
+    ext.versions = versions
+
     repositories {
         jcenter()
+        mavenCentral()
+        maven { url "https://kotlin.bintray.com/kotlinx" }
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.3'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath 'com.android.tools.build:gradle:3.3.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
     }
 }
 
 allprojects {
     repositories {
         jcenter()
+        mavenCentral()
+        maven { url "https://kotlin.bintray.com/kotlinx" }
+        google()
     }
 }
 

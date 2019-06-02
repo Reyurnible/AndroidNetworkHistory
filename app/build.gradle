@@ -21,12 +21,28 @@ android {
     // Deplecatedになってる HttpClientさんis dead...
     // [http://developer.android.com/intl/ja/about/versions/marshmallow/android-6.0-changes.html]
     useLibrary 'org.apache.http.legacy'
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/kotlinx-io.kotlin_module'
+        exclude 'META-INF/atomicfu.kotlin_module'
+        exclude 'META-INF/kotlinx-coroutines-io.kotlin_module'
+        exclude 'META-INF/kotlinx-coroutines-core.kotlin_module'
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.android.support:appcompat-v7:28.0.0"
 
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
     // Volley
     implementation "com.mcxiaoke.volley:library:$versions.volley"
     // Retrofit1
@@ -40,5 +56,8 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$versions.okhttp"
     // Ion
     implementation "com.koushikdutta.ion:ion:2.+"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+    // Ktor
+    implementation "io.ktor:ktor-client-android:$versions.ktor"
+    implementation "io.ktor:ktor-client-gson:$versions.ktor"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
 }

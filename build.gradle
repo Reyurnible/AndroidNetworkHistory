@@ -10,6 +10,9 @@ buildscript {
     // Retrofit
     versions.regacyRetrofit = '1.9.0'
     versions.retrofit = '2.1.0'
+    // Ktor
+    versions.ktor = '1.2.1'
+    versions.coroutines = '1.2.1'
 
     ext.versions = versions
 

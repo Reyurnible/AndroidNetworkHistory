@@ -73,7 +73,14 @@ public class RepositoryProvider {
             public WeatherRepository createClient(Context context) {
                 return new WeatherRepositoryImplRetrofit2();
             }
-        },;
+        },
+        KtorClient {
+            @Override
+            public WeatherRepository createClient(Context context) {
+                return new WeatherRepositoryImplKtorClient();
+            }
+        },
+        ;
 
         public abstract WeatherRepository createClient(Context context);
 

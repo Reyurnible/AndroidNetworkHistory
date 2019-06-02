@@ -1,13 +1,14 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "com.reyurnible.android.networkhistory"
         minSdkVersion 15
-        targetSdkVersion 23
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
@@ -22,27 +23,22 @@ android {
     useLibrary 'org.apache.http.legacy'
 }
 
-// OkHtto
-def okhttpVersion = '3.5.0'
-// Retrofit
-def retrofitVersion = '2.1.0'
-
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:28.0.0"
 
     // Volley
-    compile 'com.mcxiaoke.volley:library:1.0.19'
+    implementation "com.mcxiaoke.volley:library:$versions.volley"
     // Retrofit1
-    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    implementation "com.squareup.retrofit:retrofit:$versions.regacyRetrofit"
     // Retrofit2
-    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit"
     // OkHttp2
-    compile 'com.squareup.okhttp:okhttp:2.7.0'
+    implementation "com.squareup.okhttp:okhttp:$versions.regacyOkhttp"
     // OkHttp3
-    compile "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    implementation "com.squareup.okhttp3:okhttp:$versions.okhttp"
     // Ion
-    compile 'com.koushikdutta.ion:ion:2.+'
+    implementation "com.koushikdutta.ion:ion:2.+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
 }
